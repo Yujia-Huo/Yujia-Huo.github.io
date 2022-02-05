@@ -14,7 +14,6 @@ d3.csv("./MilitarySpending.csv").then(function(data) {
         .attr("width", width)
         .attr("height", height);
 
-    print("aaaaa");
     /*
     CREATE THE SCALE
     */
