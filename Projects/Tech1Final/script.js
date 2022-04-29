@@ -1,4 +1,4 @@
-d3.csv("./data/MilitarySpending.csv").then(function(data) {
+d3.csv("./Data/MilitarySpending.csv").then(function(data) {
 /*
     SETTING UP THE SVG CANVAS
       */
