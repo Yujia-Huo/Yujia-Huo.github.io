@@ -1,0 +1,159 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 25vw 75vw;
+    grid-template-rows: 30vh;
+    grid-template-areas: "title intro";
+}
+
+#title {
+    grid-area: "title";
+}
+
+#intro{
+    grid-area: "intro";
+}
+
+.visIntro {
+    display: grid;
+    grid-template-columns: 15vw 30vw 40vw 15vw;
+    grid-template-rows: 30vh;
+    grid-template-areas: "spacer1 title info spacer2";
+    padding-top: 20vh;
+    padding-bottom: 20vh;
+    text-align: left;
+}
+
+
+#spacer1 {
+    grid-column: 1;
+}
+
+#title {
+    grid-column: 2;
+}
+
+#info {
+    font-size: 17px;
+    line-height: 1.5;
+    grid-column: 3;
+    padding-top: 60px;
+}
+
+#spacer2 {
+    grid-column: 4;
+}
+
+#buttondiv {
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 700;
+    color: rgb(218, 208, 167);
+    line-height: 30%;
+}
+
+h2 {
+    font-size: 70px;
+    text-align: left;
+    top: 0;
+    color: rgb(218, 208, 167);
+}
+
+html, body {
+    margin: 0px;
+    font-family: "Work Sans", sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(6, 6, 6);
+    text-align: center;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    padding: 20px;
+    padding-bottom: 60px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    font-family: "Work Sans", sans-serif;
+    opacity: .4;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    text-decoration-line: none;
+}
+
+button:hover {
+    opacity: 1;
+    text-decoration-line: underline;
+}
+
+button:focus {
+    opacity: 1;
+}
+
+#chart {
+    position: relative;
+    margin-top: -50vh;
+}
+
+#chart2 {
+    position: relative;
+    margin-top: -20vh;
+}
+
+#map {
+    position: relative;
+    margin-top: -10vh;
+    margin-bottom: -10vh;
+}
+
+.tooltip{
+    position: absolute;
+    visibility: hidden;
+    font-family: "Work Sans", sans-serif;
+    font-size: 12pt;
+    pointer-events: none;
+    max-width: 200px;
+    overflow-wrap:normal;
+    text-align: left;
+    border-left: 2px solid white;
+    padding-left: 8px;
+}
+
+.tooltip2{
+    position: absolute;
+    visibility: hidden;
+    font-family: "Work Sans", sans-serif;
+    font-size: 20pt;
+    padding: 2px;
+    pointer-events: none;
+    max-width: 270px;
+    overflow-wrap:normal;
+    text-align: left;
+    border-left: 5px solid white;
+}
+
+.tooltip3{
+    position: absolute;
+    visibility: hidden;
+    font-family: "Work Sans", sans-serif;
+    font-size: 40pt;
+    padding: 2px;
+    pointer-events: none;
+    max-width: 700px;
+    overflow-wrap:normal;
+    text-align: left;
+    opacity: .5
+}
