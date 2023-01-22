@@ -2,19 +2,30 @@ html, body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+img{
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
 h1{
     font-weight: 400;
     margin-left: 5%;
+    font-size: 30pt;
     
 }
 
 h2{
     font-weight:200;
     margin-left: 5%;
+    font-size: 30pt;
 }
 
 h3{
     font-weight:50;
+    font-size: 20pt;
+}
+
+p{
+    font-size:15pt;
 }
 .column {
     /* margin-left: 10px;
