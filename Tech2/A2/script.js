@@ -274,12 +274,13 @@ d3.csv("./data/gapminder.csv").then(function(data) {
     "transform", "x", and "y" attributes, in terms of
     how their values are computed to control the rotated
     placement of the label?
-    the second argument in the attr() will control the first argument.
+    A:the second argument in the attr() will control the first argument.
     x refer to the x position and controled by width value
     y refer to the y position and control by the height and margin bottom
     transform control by the command that use in the second argument, 
     in this case is rotate() and value inside rotate() define the rotation
-    value.
+    value. When the item rotated, in y axis, the x actually control the y position
+    on the page and y control the x position on the page.
 
     */
     const xAxisLabel = svg.append("text")
