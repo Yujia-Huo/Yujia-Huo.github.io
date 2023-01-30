@@ -5,4 +5,10 @@ figure#chart{
     padding: 0px;
     margin: 0px;
     position: relative;
+    background-color: rgb(236, 236, 236);
+}
+body{
+    font-weight: 100;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: normal;
 }
