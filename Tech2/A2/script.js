@@ -17,8 +17,10 @@ and discuss the following questions:
         previous d3.csv function
 
     - What kind of JS data structure is `data`?
+        A: it is an array
     - Where does the entire d3.csv().then() pattern
         open and close in this document?
+        A: the pattern open the CSV file and access to the information
 
     You may find it useful to examine the contents
     of `data` with console.log(data)
