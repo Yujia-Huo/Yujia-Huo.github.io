@@ -1,4 +1,4 @@
-d3.csv("./data/USPopulation.csv").then(function(data){
+d3.csv("./Data/USPopulation.csv").then(function(data){
 
 // set the dimensions and margins of the graph
 const width = document.querySelector("#chart").clientWidth;
