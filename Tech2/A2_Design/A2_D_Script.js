@@ -10,6 +10,7 @@ const svg = d3.select("#chart")
     .attr("width", width)
     .attr("height", height)
 
+//filter data by year: 1900
 let filtered_data = data.filter(function(d) {
         return d.Year === '1900'
     });
@@ -36,7 +37,7 @@ adult_sum  = d3.sum(adult_filter, function(d) { return +d.People; })
 senior_sum  = d3.sum(senior_filter, function(d) { return +d.People; })
 
 
-
+//filter data by year: 2000
 let filtered_data2 = data.filter(function(d) {
     return d.Year === '2000'
 });
@@ -63,6 +64,7 @@ adult_sum2  = d3.sum(adult_filter2, function(d) { return +d.People; })
 senior_sum2  = d3.sum(senior_filter2, function(d) { return +d.People; })
 
 
+//setup seperate group for each circle pack
 console.log(senior_filter);
 let group1= svg.append('g')
 let group2= svg.append('g')
@@ -71,17 +73,16 @@ let group4= svg.append('g')
 let group5= svg.append('g')
 let group6= svg.append('g')
 let group7= svg.append('g')
-let group8= svg.append('g');
-// console.log(infant_sum);
+let group8= svg.append('g')
+let group9= svg.append('g')
 
-
+//title text
 svg.append('text')
 .attr('x', 1500)
 .attr('y', 220+200)
 .attr('stroke', 'Black')
 .style("font-size", 50)
-.text("1990 and 2000")
-.style("font-weight", 50)
+.text("1990 vs 2000")
 
 svg.append('text')
   .attr('x', 1500)
@@ -97,7 +98,7 @@ svg.append('text')
   .style("font-size", 50)
   .text("Distribution")
 
-
+//year
 svg.append('text')
   .attr('x', 100)
   .attr('y', 300)
@@ -107,11 +108,11 @@ svg.append('text')
 
   svg.append('text')
   .attr('x', 100)
-  .attr('y', 800)
+  .attr('y', 700)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("2000")
-
+//age group
   svg.append('text')
   .attr('x', 300)
   .attr('y', 100)
@@ -120,10 +121,10 @@ svg.append('text')
   .text("Infant")
 
   svg.append('text')
-  .attr('x', 300)
+  .attr('x', 310)
   .attr('y', 150)
   .attr('stroke', 'Black')
-  .style("font-size", 30)
+  .style("font-size", 26)
   .text("(0-5)")
 
   svg.append('text')
@@ -134,10 +135,10 @@ svg.append('text')
   .text("Under Adult")
 
   svg.append('text')
-  .attr('x', 580)
+  .attr('x', 600)
   .attr('y', 150)
   .attr('stroke', 'Black')
-  .style("font-size", 30)
+  .style("font-size", 26)
   .text("(10-15)")
 
   svg.append('text')
@@ -151,7 +152,7 @@ svg.append('text')
   .attr('x', 900)
   .attr('y', 150)
   .attr('stroke', 'Black')
-  .style("font-size", 30)
+  .style("font-size", 26)
   .text("(20-55)")
 
   svg.append('text')
@@ -162,24 +163,41 @@ svg.append('text')
   .text("Senior")
 
   svg.append('text')
-  .attr('x', 1200)
+  .attr('x', 1210)
   .attr('y', 150)
   .attr('stroke', 'Black')
-  .style("font-size", 30)
+  .style("font-size", 26)
   .text("(60+)")
 
+  //legend
+  group9.append('circle')
+  .attr('r', 5)
+  .attr('cx', 1500)
+  .attr('cy', 100)
+  .attr('fill', "none")
+  .attr("stroke", "black")
+  .style("stroke-width", 2)
+
+  svg.append('text')
+  .attr('x', 1520)
+  .attr('y', 106)
+  .attr('stroke', 'Black')
+  .style("font-size", 20)
+  .text("= 300,000 population")
+
+//draw the circle pack function with for loop
 function draw(){
     for (let i = 0; i < 9; i++) {
             console.log(i);
             var numNodes = [infant_sum, uadult_sum, adult_sum, senior_sum, infant_sum2, uadult_sum2, adult_sum2, senior_sum2]
             let xp= [200, 500, 800, 1100, 200, 500, 800, 1100]
             let groups = [group1, group2, group3, group4, group5, group6, group7, group8]
-            let color=[ '#470024','#01847F','#492D22', '#003153','#470024','#01847F','#492D22', '#003153']
+            let color=[ '#01847F','#002FA7', '#003153','#470024','#01847F','#002FA7', '#003153','#470024']
             if(i<4){
                 cy =300;
             }
             if(i>3){
-                cy =800;
+                cy =700;
             }
             // var xCenter = [100, 300, 500];
             var nodes = d3.range(numNodes[i]/300000).map(function(d) {

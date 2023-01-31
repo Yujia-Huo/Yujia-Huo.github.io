@@ -8,7 +8,6 @@ figure#chart{
     background-color: rgb(236, 236, 236);
 }
 body{
-    font-weight: 100;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-style: normal;
+    font-family:'Saira';
+    font-weight: 200;
 }
