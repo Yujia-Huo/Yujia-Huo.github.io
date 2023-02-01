@@ -3,7 +3,7 @@ d3.csv("./Data/USPopulation.csv").then(function(data){
 // set the dimensions and margins of the graph
 const width = document.querySelector("#chart").clientWidth;
 const height = document.querySelector("#chart").clientHeight;
-const margin = {top: 50, left: 100, right: 50, bottom: 100};
+const margin = {top: 50, left: 50, right: 50, bottom: 50};
 // append the svg object to the body of the page
 const svg = d3.select("#chart")
   .append("svg")
@@ -78,21 +78,21 @@ let group9= svg.append('g')
 
 //title text
 svg.append('text')
-.attr('x', 1500)
+.attr('x', width-margin.right-350)
 .attr('y', 220+200)
 .attr('stroke', 'Black')
 .style("font-size", 50)
 .text("1990 vs 2000")
 
 svg.append('text')
-  .attr('x', 1500)
+  .attr('x', width-margin.right-350)
   .attr('y', 300+200)
   .attr('stroke', 'Black')
   .style("font-size", 50)
   .text("US Population")
 
   svg.append('text')
-  .attr('x', 1500)
+  .attr('x', width-margin.right-350)
   .attr('y', 380+200)
   .attr('stroke', 'Black')
   .style("font-size", 50)
@@ -100,70 +100,70 @@ svg.append('text')
 
 //year
 svg.append('text')
-  .attr('x', 100)
+  .attr('x', margin.left)
   .attr('y', 300)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("1990")
 
   svg.append('text')
-  .attr('x', 100)
+  .attr('x',  margin.left)
   .attr('y', 700)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("2000")
 //age group
   svg.append('text')
-  .attr('x', 300)
+  .attr('x', margin.left+150)
   .attr('y', 100)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("Infant")
 
   svg.append('text')
-  .attr('x', 310)
+  .attr('x', margin.left+160)
   .attr('y', 150)
   .attr('stroke', 'Black')
   .style("font-size", 26)
   .text("(0-5)")
 
   svg.append('text')
-  .attr('x', 560)
+  .attr('x', 460)
   .attr('y', 100)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("Under Adult")
 
   svg.append('text')
-  .attr('x', 600)
+  .attr('x', 500)
   .attr('y', 150)
   .attr('stroke', 'Black')
   .style("font-size", 26)
   .text("(10-15)")
 
   svg.append('text')
-  .attr('x', 910)
+  .attr('x', 810)
   .attr('y', 100)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("Adult")
 
   svg.append('text')
-  .attr('x', 900)
+  .attr('x', 800)
   .attr('y', 150)
   .attr('stroke', 'Black')
   .style("font-size", 26)
   .text("(20-55)")
 
   svg.append('text')
-  .attr('x', 1200)
+  .attr('x', 1100)
   .attr('y', 100)
   .attr('stroke', 'Black')
   .style("font-size", 30)
   .text("Senior")
 
   svg.append('text')
-  .attr('x', 1210)
+  .attr('x', 1110)
   .attr('y', 150)
   .attr('stroke', 'Black')
   .style("font-size", 26)
@@ -172,14 +172,14 @@ svg.append('text')
   //legend
   group9.append('circle')
   .attr('r', 5)
-  .attr('cx', 1500)
+  .attr('cx', width-margin.right-350)
   .attr('cy', 100)
   .attr('fill', "none")
   .attr("stroke", "black")
   .style("stroke-width", 2)
 
   svg.append('text')
-  .attr('x', 1520)
+  .attr('x', width-margin.right-330)
   .attr('y', 106)
   .attr('stroke', 'Black')
   .style("font-size", 20)
@@ -190,7 +190,7 @@ function draw(){
     for (let i = 0; i < 9; i++) {
             console.log(i);
             var numNodes = [infant_sum, uadult_sum, adult_sum, senior_sum, infant_sum2, uadult_sum2, adult_sum2, senior_sum2]
-            let xp= [200, 500, 800, 1100, 200, 500, 800, 1100]
+            let xp= [margin.left+50, margin.left+350, margin.left+650, margin.left+950, 100, 400, 700, 1000]
             let groups = [group1, group2, group3, group4, group5, group6, group7, group8]
             let color=[ '#01847F','#002FA7', '#003153','#470024','#01847F','#002FA7', '#003153','#470024']
             if(i<4){
