@@ -1,0 +1,8 @@
+figure#chart{
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+}
