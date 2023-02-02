@@ -298,4 +298,71 @@ d3.csv("./data/gapminder.csv").then(function(data) {
         .attr("y",margin.left/2)
         .text("Life Expectancy (Years)");
 
+
+
+        //add tooltips
+        const tooltip= d3.select('#chart')
+            .append('div')
+            .attr('class','tooltip');
+
+
+        points.on('mouseover', function(e,d){
+            let x =+d3.select(this).attr('cx');
+            let y =+d3.select(this).attr('cy');
+
+            let displayValue = d3.format(',')(d.pop);
+
+            tooltip.style('visibility','visible')
+                .style('top', `${y}px`)
+                .style('left', `${x}px`)
+                .html(`<p><b>${d.country}</b><br><em>${d.continent}</em><br><b>${displayValue}</b></p>`)
+
+        }).on('mouseout', function(e, d){
+            tooltip.style('visibility','hidden')
+        })
+
+
+        const legendWidth = document.querySelector("#legend").clientWidth;
+        const legendHeight = 150;
+        const legendtMargin = 20;
+        const legendSpacing = 100;
+
+
+        const continents =["Asia", "Europe", "Africa", "Americas", "Oceania"];
+
+        const colorLegend = d3.select('#legend')
+            .append("svg")
+            .attr("width", legendWidth)
+            .attr("height", legendHeight)
+
+
+
+            const allCategories = data.map(function(d){
+                return d.continent;
+            })
+
+
+
+            //###creating array with set that not allow duplicate element
+            const uniqueCategories = [...new Set(allCategories)]
+
+            console.log(uniqueCategories);
+
+            continents.forEach(function(continent, i){
+
+                colorLegend.append('circle')
+                .attr('cx', 30+legendtMargin + i*legendSpacing)
+                .attr('cy', legendtMargin)
+                .attr('r', 10)
+                .attr('fill', fillScale(continent))
+
+                colorLegend.append('text')
+                .attr('class', 'legend --label')
+                .attr('x', 30+legendtMargin + i*legendSpacing)
+                .attr('y',legendtMargin+25 )
+                .text(continent)
+
+            });
+
+
 });

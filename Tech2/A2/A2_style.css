@@ -6,3 +6,10 @@ figure#chart{
     margin: 0px;
     position: relative;
 }
+
+.tooltip{
+    position: absolute;
+    visibility: hidden;
+    top: 0px;
+    left: 0px;
+}
