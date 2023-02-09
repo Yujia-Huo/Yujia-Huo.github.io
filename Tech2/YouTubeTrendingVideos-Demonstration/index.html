@@ -1,0 +1,35 @@
+<!-- When you create your own project folder for this assignment,
+make sure you double check all the different links and relative
+folder/file paths below. -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="./style/style.css">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+    </head>
+    <body>
+        <h1>YouTube Trending Videos</h1>
+        <div id="chart--container">
+            <div id="chart"></div>
+            <div id="legend">
+                <h2>Legend</h2>
+                <div>
+                  <input class="category--option" type="checkbox" value="Gaming" checked>
+                  <label for="Gaming">Gaming</label>
+                </div>
+                
+                <div>
+                  <input class="category--option" type="checkbox" value="Entertainment" checked>
+                  <label for="Entertainment">Entertainment</label>
+                </div>
+  
+                <div>
+                  <input class="category--option" type="checkbox" value="Music" checked>
+                  <label for="Music">Music</label>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
