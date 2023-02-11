@@ -1,14 +1,18 @@
 d3.csv("./Data/USPopulation.csv").then(function(data){
 
 // set the dimensions and margins of the graph
-const width = document.querySelector("#chart").clientWidth;
-const height = document.querySelector("#chart").clientHeight;
+// const width = document.querySelector("#chart").clientWidth;
+// const height = document.querySelector("#chart").clientHeight;
+const width = 1300;
+const height = 1000;
 const margin = {top: 50, left: 50, right: 50, bottom: 50};
 // append the svg object to the body of the page
 const svg = d3.select("#chart")
   .append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    // .attr("width", width)
+    // .attr("height", height)
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
 
 //filter data by year: 1900
 let filtered_data = data.filter(function(d) {
@@ -77,26 +81,26 @@ let group8= svg.append('g')
 let group9= svg.append('g')
 
 //title text
-svg.append('text')
-.attr('x', width-margin.right-300)
-.attr('y', 220+200)
-.attr('stroke', 'Black')
-.style("font-size", 40)
-.text("1990 vs 2000")
+// svg.append('text')
+// .attr('x', width-margin.right-300)
+// .attr('y', 220+200)
+// .attr('stroke', 'Black')
+// .style("font-size", 40)
+// .text("1990 vs 2000")
 
-svg.append('text')
-  .attr('x', width-margin.right-300)
-  .attr('y', 300+200)
-  .attr('stroke', 'Black')
-  .style("font-size", 40)
-  .text("US Population")
+// svg.append('text')
+//   .attr('x', width-margin.right-300)
+//   .attr('y', 300+200)
+//   .attr('stroke', 'Black')
+//   .style("font-size", 40)
+//   .text("US Population")
 
-  svg.append('text')
-  .attr('x', width-margin.right-300)
-  .attr('y', 380+200)
-  .attr('stroke', 'Black')
-  .style("font-size", 40)
-  .text("Distribution")
+//   svg.append('text')
+//   .attr('x', width-margin.right-300)
+//   .attr('y', 380+200)
+//   .attr('stroke', 'Black')
+//   .style("font-size", 40)
+//   .text("Distribution")
 
 //year
 svg.append('text')
@@ -170,16 +174,29 @@ svg.append('text')
   .text("(60+)")
 
   //legend
-  group9.append('circle')
+  const legendWidth = 400;
+  const legendHeight = 200;
+  const legendMargin = 25;
+  const legendSpacing = 50;
+
+
+  const circleLegend = d3.select("#legend")
+  .append("svg")
+  // .attr("width", legendWidth)
+  // .attr("height", 300);
+  .attr("viewBox", `0 0 ${legendWidth} ${legendHeight}`)
+  .attr("preserveAspectRatio", "xMidYMid meet");
+
+  circleLegend.append('circle')
   .attr('r', 5)
-  .attr('cx', width-margin.right-300)
+  .attr('cx', legendWidth-394)
   .attr('cy', 100)
   .attr('fill', "none")
   .attr("stroke", "black")
   .style("stroke-width", 2)
 
-  svg.append('text')
-  .attr('x', width-margin.right-280)
+  circleLegend.append('text')
+  .attr('x', legendWidth-385)
   .attr('y', 106)
   .attr('stroke', 'Black')
   .style("font-size", 20)
