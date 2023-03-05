@@ -1,0 +1,29 @@
+html, body {
+    margin: 0px;
+    font-family: Montserrat;
+    /* font-size: 15px; */
+    color: whitesmoke;
+    background-color: black;
+}
+
+.axis text,
+.slider text {
+    font-family: Montserrat;
+    font-size: 18px;
+    fill: whitesmoke;
+}
+#container{
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+}
+#checkBoxContainer{
+    padding-top: 30px;
+    width: 100px;
+    order: 2;
+}
+#dataviz_mySlider{
+    width: 700px;
+    order: 2;
+}
+
