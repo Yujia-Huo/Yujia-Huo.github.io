@@ -35,7 +35,7 @@ const svg= plot.append("svg")
 //map projection type
 const projection = d3.geoEquirectangular()
     .translate([width / 2, height / 2])
-    .scale(1500)
+    .scale(1200)
     .center([-90, 40]);
 
 const state = d3.geoPath().projection(projection);
@@ -114,9 +114,9 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
 
         //text show year
         svg.append('text')
-        .attr("x", width-600)
-        .attr('y', height-100)
-        .attr('font-size', 50)
+        .attr("x", width-300)
+        .attr('y', height-150)
+        .attr('font-size', 40)
         .attr('fill', "white")
         .text(year);
 
