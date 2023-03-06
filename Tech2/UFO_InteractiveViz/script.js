@@ -88,7 +88,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .style("stroke-width", 1)
         .attr("stroke", "black");
 
-
+        // draw map for viz2
         console.log(uniqueShape);
         svg2.selectAll("path")
         .data(usamap.features)
@@ -101,6 +101,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .style("stroke-width", 1)
         .attr("stroke", "black");
 
+        // draw points for viz2
         svg2.selectAll("circle")
         .data(obs)
         .enter()
@@ -142,7 +143,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr("fill", 'rgba(165, 241, 250, 0.692)')
         .style("opacity", 0)
         //animation
-        .transition().duration(500).style("opacity", .6)
+        .transition().duration(800).style("opacity", .6)
         .attr("r", 1.5)
         console.log(1);
 
@@ -202,7 +203,7 @@ function showAllRec(){
           // Otherwise hide it
         }else{
         console.log(1);
-        point.transition().duration(1000).remove();
+        point.transition().remove();
         svg.selectAll('text').remove();
         }
     });
