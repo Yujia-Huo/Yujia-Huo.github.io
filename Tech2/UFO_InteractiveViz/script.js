@@ -11,6 +11,7 @@ function parseCountries(d) {
 
     if(d.state.length<3){
     return {
+        summary: d.summary,
         state: d.state,
         lon: d.city_longitude,
         lat: d.city_latitude,
@@ -19,10 +20,10 @@ function parseCountries(d) {
     }
 }
 }
-
 //append svg canvas
 
 const plot = d3.select("#map");
+const plot2 = d3.select("#shape");
 
 const svg= plot.append("svg")
     .attr("width", width)
@@ -30,13 +31,18 @@ const svg= plot.append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
 
+    const svg2= plot2.append("svg")
+    .attr("width", width)
+    .attr("height", height)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .style("background-color", 'black');
 
 
 //map projection type
 const projection = d3.geoEquirectangular()
     .translate([width / 2, height / 2])
     .scale(1200)
-    .center([-90, 40]);
+    .center([-90, 35]);
 
 const state = d3.geoPath().projection(projection);
 
@@ -69,8 +75,8 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
             .range(d3.schemePaired);
 
     
-        // draw map
-        console.log(uniqueShape);
+        // draw map for viz1
+        // console.log(uniqueShape);
         svg.selectAll("path")
         .data(usamap.features)
         .enter()
@@ -78,9 +84,33 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         // .attr("class", "continent")
         .attr("d", state)
         .attr("fill", "white")
-        .attr("opacity", .2)
-        .style("stroke-width", 2)
+        .attr("opacity", .15)
+        .style("stroke-width", 1)
         .attr("stroke", "black");
+
+
+        console.log(uniqueShape);
+        svg2.selectAll("path")
+        .data(usamap.features)
+        .enter()
+        .append("path")
+        // .attr("class", "continent")
+        .attr("d", state)
+        .attr("fill", "white")
+        .attr("opacity", .15)
+        .style("stroke-width", 1)
+        .attr("stroke", "black");
+
+        svg2.selectAll("circle")
+        .data(obs)
+        .enter()
+        .append("circle")
+        .attr('class',function(d){return d.shape; } )
+        .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
+        .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
+        .attr("fill", function(d){return colorScale(d.shape); })
+        .style("opacity", .5)
+        .attr("r", 1.5)
 
 
 
@@ -96,6 +126,10 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         // filter data of each year
         filteredDate = obs.filter(function(d){ return d.date == year })
         //reset checkbox to uncheck
+
+        var count = d3.format(',')(filteredDate.length);
+        console.log(count);
+
         document.querySelector('.showAll').checked = false;
         // draw circle
         svg.selectAll("circle")
@@ -114,11 +148,21 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
 
         //text show year
         svg.append('text')
-        .attr("x", width-300)
+        .attr("x", width-800)
+        .attr('y', height-200)
+        .attr('font-size', 40)
+        .attr('font-weight', 200)
+        .attr('fill', "white")
+        .text("Year: " + year);
+
+        svg.append('text')
+        .attr("x", width-800)
         .attr('y', height-150)
         .attr('font-size', 40)
+        .attr('font-weight', 200)
         .attr('fill', "white")
-        .text(year);
+        .text("Count: " +count);
+
 
     }
 
@@ -146,21 +190,21 @@ function showAllRec(){
 
         //draw circle when clicked
         if(cb.property("checked")){
-            point.transition().duration(500).style("opacity", .3)
+            point.transition().duration(1000).style("opacity", .3)
             //remove previous draw text
             svg.selectAll('text').remove();
             svg.append('text')
-                .attr("x", width-400)
-                .attr('y', height-100)
-                .attr('font-size', 50)
+                .attr("x", width-800)
+                .attr('y', height-150)
+                .attr('font-size', 40)
                 .attr('fill', "white")
                 .text("Full Records");
           // Otherwise hide it
-          }else{
-            console.log(1);
-            point.transition().duration(500).remove();
-            svg.selectAll('text').remove();
-          }
+        }else{
+        console.log(1);
+        point.transition().duration(1000).remove();
+        svg.selectAll('text').remove();
+        }
     });
 }
 
@@ -186,7 +230,7 @@ function showAllRec(){
     });
 
     //append svg slider to div
-    let svg2 = d3.select('#dataviz_mySlider')
+    let sliderCanvas = d3.select('#dataviz_mySlider')
     .append('svg')
     .attr('width', 800)
     .attr('height', 100)
@@ -199,6 +243,6 @@ function showAllRec(){
     d3.select(".showAll").on("change",showAllRec);
 showAllRec();
 
-svg2;
+sliderCanvas;
     }
     )

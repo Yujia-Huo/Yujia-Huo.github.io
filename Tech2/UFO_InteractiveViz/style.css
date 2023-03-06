@@ -6,6 +6,16 @@ html, body {
     background-color: black;
 }
 
+h1{
+    font-size: 40pt;
+    font-weight: 200;
+
+}
+
+#title{
+    margin-left: 50px;
+    margin-bottom: 100px;
+}
 .axis text,
 .slider text {
     font-family: Montserrat;
