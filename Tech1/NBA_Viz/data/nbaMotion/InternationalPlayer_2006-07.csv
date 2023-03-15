@@ -1,0 +1,81 @@
+PLAYER,TEAM,COLLEGE,COUNTRY,lon,lat,DRAFT YEAR,DRAFT ROUND,DRAFT NUMBER
+Andres Nocioni,CHI,None,Argentina,-58.38,-34.6,Undrafted,Undrafted,Undrafted
+Fabricio Oberto,SAS,None,Argentina,-58.38,-34.6,Undrafted,Undrafted,Undrafted
+Walter Herrmann,CHA,None,Argentina,-58.38,-34.6,Undrafted,Undrafted,Undrafted
+Carlos Delfino,DET,None,Argentina,-58.38,-34.6,2003,1,25
+Manu Ginobili,SAS,None,Argentina,-58.38,-34.6,1999,2,57
+Carlos Arroyo,ORL,Florida International,Puerto Rico,-66.664,18.200,Undrafted,Undrafted,Undrafted
+J.J. Barea,DAL,Northeastern,Puerto Rico,-66.664,18.200,Undrafted,Undrafted,Undrafted
+DJ Mbenga,DAL,None,Belgium,4.402,51.26,Undrafted,Undrafted,Undrafted
+Esteban Batista,ATL,None,Uruguay,-56.16,-34.90,Undrafted,Undrafted,Undrafted
+Jorge Garbajosa,TOR,None,Spain,-3.70,40.416,Undrafted,Undrafted,Undrafted
+Jose Calderon,TOR,None,Spain,-3.70,40.416,Undrafted,Undrafted,Undrafted
+Sergio Rodriguez,POR,None,Spain,-3.70,40.416,2006,1,27
+Pau Gasol,MEM,None,Spain,-3.70,40.416,2001,1,3
+Kelenna Azubuike,GSW,Kentucky,United Kingdom,-1.080,53.95,Undrafted,Undrafted,Undrafted
+Luol Deng,CHI,Duke,United Kingdom,-1.080,53.95,2004,1,7
+Pat Burke,PHX,Auburn,Ireland,-6.26,53.35,Undrafted,Undrafted,Undrafted
+Raja Bell,PHX,Florida International,US Virgin Islands,-83.82,34.29,Undrafted,Undrafted,Undrafted
+Tim Duncan,SAS,Wake Forest,US Virgin Islands,-83.82,34.29,1997,1,1
+Sarunas Jasikevicius,GSW,Maryland,Lithuania,25.27,54.68,Undrafted,Undrafted,Undrafted
+Linas Kleiza,DEN,Missouri,Lithuania,25.27,54.68,2005,1,27
+Darius Songaila,WAS,Wake Forest,Lithuania,25.27,54.68,2002,2,49
+Zydrunas Ilgauskas,CLE,None,Lithuania,25.27,54.68,1996,1,20
+Slava Medvedenko,ATL,None,Ukraine,37.80,48.00,Undrafted,Undrafted,Undrafted
+Vitaly Potapenko,SAC,Wright State,Ukraine,37.80,48.00,1996,1,12
+Andrea Bargnani,TOR,None,Italy,12.496,41.90,2006,1,1
+Damir Markota,MIL,None,Croatia,15.96,45.815,2006,2,59
+Gordan Giricek,UTA,None,Croatia,15.96,45.815,1999,2,40
+Marcus Vinicius,NOK,None,Brazil,-46.625,-23.533,2006,2,43
+Anderson Varejao,CLE,None,Brazil,-46.625,-23.533,2004,2,30
+Rafael Araujo,UTA,Brigham Young,Brazil,-46.625,-23.533,2004,1,8
+Leandro Barbosa,PHX,None,Brazil,-46.625,-23.533,2003,1,28
+Nene,DEN,None,Brazil,-46.625,-23.533,2002,1,7
+Mouhamed Sene,SEA,None,Senegal,-17.4676,14.7166,2006,1,10
+Pape Sow,TOR,California State-Fullerton,Senegal,-17.4676,14.7166,2004,2,47
+DeSagana Diop,DAL,None,Senegal,-17.4676,14.7166,2001,1,8
+Thabo Sefolosha,CHI,None,Switzerland,6.14,46.204,2006,1,13
+Andrew Bogut,MIL,Utah,Australia,150.91,-31.083,2005,1,1
+Ersan Ilyasova,MIL,None,Turkey,28.97,41.01,2005,2,36
+Mehmet Okur,UTA,None,Turkey,28.97,41.01,2001,2,37
+Hedo Turkoglu,ORL,None,Turkey,28.97,41.01,2000,1,16
+Francisco Garcia,SAC,Louisville,Dominican Republic,-69.92,18.48,2005,1,23
+Johan Petro,SEA,None,France,2.29,48.85,2005,1,25
+Mickael Gelabale,SEA,None,France,2.29,48.85,2005,2,48
+Ronny Turiaf,LAL,Gonzaga,France,2.29,48.85,2005,2,37
+Boris Diaw,PHX,None,France,2.29,48.85,2003,1,21
+Mickael Pietrus,GSW,None,France,2.29,48.85,2003,1,11
+Tony Parker,SAS,None,France,2.29,48.85,2001,1,28
+Mile Ilic,NJN,None,Serbia,20.45,44.78,2005,2,43
+Darko Milicic,ORL,None,Serbia,20.45,44.78,2003,1,2
+Nenad Krstic,NJN,None,Serbia,20.45,44.78,2002,1,24
+Vladimir Radmanovic,LAL,None,Serbia,20.45,44.78,2001,1,12
+Marko Jaric,MIN,None,Serbia,20.45,44.78,2000,2,30
+Peja Stojakovic,NOK,None,Serbia,20.45,44.78,1996,1,14
+Uros Slokar,TOR,None,Slovenia,14.50,46.05,2005,2,58
+Beno Udrih,SAS,None,Slovenia,14.50,46.05,2004,1,28
+Sasha Vujacic,LAL,None,Slovenia,14.50,46.05,2004,1,27
+Bostjan Nachbar,NJN,None,Slovenia,14.50,46.05,2002,1,15
+Primoz Brezec,CHA,None,Slovenia,14.50,46.05,2000,1,27
+Rasho Nesterovic,TOR,None,Slovenia,14.50,46.05,1998,1,17
+Yaroslav Korolev,LAC,None,Russia,55.75,37.61,2005,1,12
+Viktor Khryapa,CHI,None,Russia,55.75,37.61,2004,1,22
+Andrei Kirilenko,UTA,None,Russia,55.75,37.61,1999,1,24
+Andris Biedrins,GSW,None,Latvia,24.10,56.946,2004,1,11
+Vassilis Spanoulis,HOU,None,Greece,23.72,37.98,2004,2,50
+Andreas Glyniadakis,SEA,None,Greece,23.72,37.98,2003,2,58
+Jake Tsakalidis,HOU,None,Greece,23.72,37.98,2000,1,25
+Sasha Pavlovic,CLE,None,Montenegro,19.26,42.44,2003,1,19
+Zaza Pachulia,ATL,None,Georgia,44.78,41.71,2003,2,42
+Dan Gadzuric,MIL,UCLA,Netherlands,4.89,52.37,2002,2,33
+Francisco Elson,SAS,California,Netherlands,4.89,52.37,1999,2,41
+Yao Ming,HOU,None,China,116.38,39.916,2002,1,1
+Samuel Dalembert,PHI,Seton Hall,Haiti,-72.333,18.53,2001,1,26
+Eduardo Najera,DEN,Oklahoma,Mexico,-99.1332,19.432,2000,2,38
+Jamaal Magloire,POR,Kentucky,Canada,-102.46,52.32,2000,1,19
+Steve Nash,PHX,Santa Clara,Canada,-102.46,52.32,1996,1,15
+Dirk Nowitzki,DAL,None,Germany,11.43,48.77,1998,1,9
+Michael Olowokandi,BOS,Pacific,Nigeria,7.49,9.072,1998,1,1
+Sean Marks,PHX,California,New Zealand,174.77,-41.27,1998,2,44
+Adonal Foyle,GSW,Colgate,St. Vincent & Grenadines,-61.22,13.01,1997,1,8
+Dikembe Mutombo,HOU,Georgetown,Congo,15.30,-4.32,1991,1,4
