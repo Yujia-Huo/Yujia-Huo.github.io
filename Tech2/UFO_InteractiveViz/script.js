@@ -39,7 +39,7 @@ const svg= plot.append("svg")
 
 
 //map projection type
-const projection = d3.geoEquirectangular()
+const projection = d3.geoMercator()
     .translate([width / 2, height / 2])
     .scale(1200)
     .center([-90, 35]);
@@ -137,7 +137,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .data(filteredDate)
         .enter()
         .append("circle")
-        .attr('class',function(d) { return d.date; })
+        // .attr('class',function(d) { return d.date; })
         .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
         .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
         .attr("fill", 'rgba(165, 241, 250, 0.692)')
@@ -177,7 +177,7 @@ function showAllRec(){
 
 
         //variable store points with defult 0 opacity
-        point = svg.selectAll("circle")
+        let point = svg.selectAll("circle")
             .remove()
             .data(obs)
             .enter()
@@ -191,7 +191,7 @@ function showAllRec(){
 
         //draw circle when clicked
         if(cb.property("checked")){
-            point.transition().duration(1000).style("opacity", .3)
+            point.transition().duration(3000).style("opacity", .3)
             //remove previous draw text
             svg.selectAll('text').remove();
             svg.append('text')
@@ -201,10 +201,12 @@ function showAllRec(){
                 .attr('fill', "white")
                 .text("Full Records");
           // Otherwise hide it
+          sliderCanvas.transition().duration(1000).style('opacity', 0)
         }else{
         console.log(1);
         point.transition().remove();
         svg.selectAll('text').remove();
+        sliderCanvas.transition().duration(1000).style('opacity', 1)
         }
     });
 }
@@ -237,7 +239,8 @@ function showAllRec(){
     .attr('height', 100)
     .append('g')
     .attr('transform', 'translate(30,30)')
-    .call(slider);
+    .call(slider)
+    .style('opacity', 1);
     
 
     //event listener
