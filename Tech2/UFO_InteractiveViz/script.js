@@ -2,8 +2,9 @@
 // const height = window.innerHeight;
 
 //set up width and height
-const width =window.innerWidth;
+const width =window.innerWidth/2;
 const height = 900;
+const margin = {top: 20, right: 30, bottom: 40, left: 100}
 
 //parse function for filter data
 function parseCountries(d) {
@@ -23,26 +24,46 @@ function parseCountries(d) {
 //append svg canvas
 
 const plot = d3.select("#map");
+const plot_1 = d3.select('#linechart')
 const plot2 = d3.select("#shape");
+
+// const svg1= plot.append("svg")
+// .attr("width", width)
+// .attr("height", height)
+// .attr("preserveAspectRatio", "xMinYMin meet")
+// .style("background-color", 'black');
 
 const svg= plot.append("svg")
     .attr("width", width)
     .attr("height", height)
+    // .attr("transform", `translate(${margin.left},${margin.top})`)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
 
-    const svg2= plot2.append("svg")
+const svg_1 = plot_1.append("svg")
+.attr("width", width/2+200)
+.attr("height", height)
+.attr("preserveAspectRatio", "xMinYMin meet")
+// .attr("transform", `translate(${margin.left},${margin.top})`)
+.style("background-color", 'black');
+
+const svg2= plot2.append("svg")
     .attr("width", width)
     .attr("height", height)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
+const svg2_2 =  plot2.append("svg")
+.attr("width", width)
+.attr("height", 200)
+.attr("preserveAspectRatio", "xMinYMin meet")
+.style("background-color", 'black');
 
 
 //map projection type
 const projection = d3.geoMercator()
     .translate([width / 2, height / 2])
-    .scale(1200)
-    .center([-90, 35]);
+    .scale(1000)
+    .center([-100, 35]);
 
 const state = d3.geoPath().projection(projection);
 
@@ -88,6 +109,20 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .style("stroke-width", 1)
         .attr("stroke", "black");
 
+
+        // svg.selectAll("circle")
+        // .data(obs)
+        // .enter()
+        // .append("circle")
+        // .attr('class',function(d) { return 'y'+d.date; })
+        // .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
+        // .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
+        // .attr("fill", 'rgba(165, 241, 250, 0.692)')
+        // .style("opacity", 0)
+        // .attr("r", 1.5)
+
+
+
         // draw map for viz2
         console.log(uniqueShape);
         svg2.selectAll("path")
@@ -102,7 +137,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr("stroke", "black");
 
         // draw points for viz2
-        svg2.selectAll("circle")
+        const shapepoint = svg2.selectAll("circle")
         .data(obs)
         .enter()
         .append("circle")
@@ -111,9 +146,86 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
         .attr("fill", function(d){return colorScale(d.shape); })
         .style("opacity", .5)
-        .attr("r", 1.5)
+        .attr("r", 1.5);
 
 
+        //count number of each shape
+        const shapeCount = [];
+
+        for(let i=0; i<uniqueShape.length; i++){
+            const total = obs.filter(d=>d.shape===uniqueShape[i]).length;
+            shapeCount.push({shape:uniqueShape[i], total:total});
+        }
+
+
+        //for line chart
+        const yearCount = [];
+
+        for(let i=0; i<uniqueDate.length; i++){
+            if(uniqueDate[i] !="0NaN"){
+            const total = obs.filter(d=>d.date===uniqueDate[i]).length;
+            yearCount.push({year:uniqueDate[i], total:total});
+            }
+        }
+
+        console.log(yearCount);
+
+        const x = d3.scaleLinear()
+        .domain(d3.extent(yearCount, function(d) { return d.year; }))
+        .range([ 0, width/2 ]);
+
+        svg_1.append("g")
+        .attr("transform", `translate(100, 500)`)
+        .call(d3.axisBottom(x));
+
+        // Add Y axis
+        const y = d3.scaleLinear()
+        .domain([0, d3.max(yearCount, function(d) { return +d.total; })])
+        .range([ 500, 0 ]);
+        
+        svg_1.append("g")
+        .attr("transform", `translate(100, 0)`)
+        .call(d3.axisLeft(y));
+
+        svg_1.append("path")
+        .datum(yearCount)
+        .attr("fill", "none")
+        .attr("stroke", 'grey')
+        .attr("stroke-width", 2)
+        .attr("d", d3.line()
+          .x(function(d) { return x(d.year)+100 })
+          .y(function(d) { return y(d.total) })
+          )
+
+          svg_1.selectAll('circle')
+          .data(yearCount)
+          .enter()
+          .append('circle')
+          .attr('class',function(d) { return 'y'+d.year; })
+          .attr('cx', function(d) { return x(d.year)+100 })
+          .attr('cy', function(d) { return y(d.total) })
+          .attr('fill', 'rgba(165, 241, 250, 0.692)')
+          .style("opacity", 0)
+          .attr('r', 7);
+
+
+
+        //button for hover highlight
+        const lightB= svg2_2.append('circle')
+        // .attr('class','light')
+        .attr('cx', width/2)
+        .attr('cy', 100)
+        .attr('fill', 'white')
+        .attr('r', 10);
+
+
+        lightB.on("mouseover", function(e, d) {
+            svg2.selectAll('circle').style("opacity", .2)
+            svg2.selectAll('.light').style("opacity", 1).attr("r", 2);
+
+        }).on("mouseout", function() {
+            svg2.selectAll('circle').style("opacity", .5).attr("r", 1.5);
+        })
 
         //find max and min of the years
         dateMaxMin = d3.extent(obs, function (d) { return +d.date });
@@ -125,14 +237,15 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         //update function for slider interaction(show each year)
     function updateDate(year) {
         // filter data of each year
-        filteredDate = obs.filter(function(d){ return d.date == year })
+        filteredDate = obs.filter(function(d){ return d.date == year });
         //reset checkbox to uncheck
 
+        console.log('year'+ year)
         var count = d3.format(',')(filteredDate.length);
         console.log(count);
 
-        document.querySelector('.showAll').checked = false;
-        // draw circle
+        // document.querySelector('.showAll').checked = false;
+       //draw circle
         svg.selectAll("circle")
         .data(filteredDate)
         .enter()
@@ -145,71 +258,83 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         //animation
         .transition().duration(800).style("opacity", .6)
         .attr("r", 1.5)
-        console.log(1);
+        // console.log(1);
+        // svg.selectAll(".y"+year).transition().duration(2000).style("opacity", .5);
 
         //text show year
-        svg.append('text')
-        .attr("x", width-800)
-        .attr('y', height-200)
-        .attr('font-size', 40)
+        svg_1.append('text')
+        .attr('class', 'discription')
+        .attr("x", 110)
+        .attr('y', 30)
+        .attr('font-size', 25)
         .attr('font-weight', 200)
         .attr('fill', "white")
         .text("Year: " + year);
 
-        svg.append('text')
-        .attr("x", width-800)
-        .attr('y', height-150)
-        .attr('font-size', 40)
+        svg_1.append('text')
+        .attr('class', 'discription')
+        .attr("x", 110)
+        .attr('y', 100)
+        .attr('font-size', 25)
         .attr('font-weight', 200)
         .attr('fill', "white")
         .text("Count: " +count);
 
 
+        const hightlightline = svg_1.append('line')
+        .attr('x1', function(d) { return x(year)+100 })
+        .attr('y1', 0)
+        .attr('x2', function(d) { return x(year)+100 })
+        .attr('y2', 500)
+        .attr("stroke-width", 2)
+        .attr('stroke', 'rgba(165, 241, 250, 0.692)')
+
+
     }
 
-//draw function for checkbox interaction(show all)
-function showAllRec(){
+// //draw function for checkbox interaction(show all)
+// function showAllRec(){
 
-    //select check box
-    d3.select(".showAll").each(function(d) {
-        cb = d3.select(this);
-        //record event of check box
+//     //select check box
+//     d3.select(".showAll").each(function(d) {
+//         cb = d3.select(this);
+//         //record event of check box
 
 
-        //variable store points with defult 0 opacity
-        let point = svg.selectAll("circle")
-            .remove()
-            .data(obs)
-            .enter()
-            .append("circle")
-            .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
-            .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
-            .attr("fill", 'rgba(165, 241, 250, 0.692)')
-            .style("opacity", 0)
-            .attr("r", 1.5)
-            // console.log(1);
+//         //variable store points with defult 0 opacity
+//         // point = svg.selectAll("circle")
+//         //     .remove()
+//         //     .data(obs)
+//         //     .enter()
+//         //     .append("circle")
+//         //     .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
+//         //     .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
+//         //     .attr("fill", 'rgba(165, 241, 250, 0.692)')
+//         //     .style("opacity", 0)
+//         //     .attr("r", 1.5)
+//             // console.log(1);
 
-        //draw circle when clicked
-        if(cb.property("checked")){
-            point.transition().duration(3000).style("opacity", .3)
-            //remove previous draw text
-            svg.selectAll('text').remove();
-            svg.append('text')
-                .attr("x", width-800)
-                .attr('y', height-150)
-                .attr('font-size', 40)
-                .attr('fill', "white")
-                .text("Full Records");
-          // Otherwise hide it
-          sliderCanvas.transition().duration(1000).style('opacity', 0)
-        }else{
-        console.log(1);
-        point.transition().remove();
-        svg.selectAll('text').remove();
-        sliderCanvas.transition().duration(1000).style('opacity', 1)
-        }
-    });
-}
+//         //draw circle when clicked
+//         if(cb.property("checked")){
+//             svg.selectAll('circle').transition().duration(1000).style("opacity", .3)
+//             //remove previous draw text
+//             svg.selectAll('text').remove();
+//             svg.append('text')
+//                 .attr("x", width-800)
+//                 .attr('y', height-150)
+//                 .attr('font-size', 40)
+//                 .attr('fill', "white")
+//                 .text("Full Records");
+//           // Otherwise hide it
+//           sliderCanvas.transition().duration(1000).style('opacity', 0)
+//         }else{
+//         console.log(1);
+//         svg.selectAll('circle').transition().duration(1000).style("opacity", 0)
+//         svg.selectAll('text').remove();
+//         sliderCanvas.transition().duration(1000).style('opacity', 1)
+//         }
+//     });
+// }
 
     //set up d3.slider()
     var slider = d3
@@ -217,7 +342,7 @@ function showAllRec(){
     .min(1968)
     .max(2021)
     .step(1)
-    .width(600)
+    .width(width/2)
     .tickFormat(d3.format('d'))
     .displayValue(false)
     //update with the value of slider
@@ -227,7 +352,12 @@ function showAllRec(){
     console.log(val);
     //remove everything before draw new
     svg.selectAll("circle").remove();
-    svg.selectAll("text").remove();
+    // svg_1.select(counttext).remove();
+    // svg_1.select(yeartext).remove();
+    svg_1.selectAll('.discription').remove();
+    svg_1.selectAll("line").transition().duration(800).style("opacity", 0).remove();
+    svg_1.selectAll("circle").transition().duration(800).style("opacity", 0);
+    svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
     //draw new
     updateDate(selectedValue);
     });
@@ -235,17 +365,15 @@ function showAllRec(){
     //append svg slider to div
     let sliderCanvas = d3.select('#dataviz_mySlider')
     .append('svg')
-    .attr('width', 800)
+    .attr('width', 1000)
     .attr('height', 100)
     .append('g')
-    .attr('transform', 'translate(30,30)')
+    .attr('transform', 'translate(100,30)')
     .call(slider)
     .style('opacity', 1);
     
 
     //event listener
-    d3.select(".showAll").on("change",showAllRec);
-showAllRec();
 
 sliderCanvas;
     }
