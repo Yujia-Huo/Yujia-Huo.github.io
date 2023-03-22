@@ -19,17 +19,32 @@ h1{
 .axis text,
 .slider text {
     font-family: Montserrat;
-    font-size: 18px;
+    font-size: 16px;
     fill: whitesmoke;
 }
+
 #chart--container {
     width: 100%;
     display: flex;
     flex-direction: row;
   }
 
-#dataviz_mySlider{
-    width: 700px;
+figure#dataviz_mySlider{
+    /* height: 100vh; */
+    margin-bottom: 100px;
+    /* width: 700px; */
     order: 2;
+}
+
+figure#map{
+    margin: 0px;
+    height: 100vh;
+    width: 100%;
+}
+
+figure#linechart{
+    margin: 0px;
+    height: 100vh;
+    width: 60%;
 }
 

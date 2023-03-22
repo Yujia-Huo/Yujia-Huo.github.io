@@ -2,9 +2,9 @@
 // const height = window.innerHeight;
 
 //set up width and height
-const width =window.innerWidth/2;
+const width =1300;
 const height = 900;
-const margin = {top: 20, right: 30, bottom: 40, left: 100}
+// const margin = {top: 20, right: 30, bottom: 40, left: 100}
 
 //parse function for filter data
 function parseCountries(d) {
@@ -45,16 +45,18 @@ const plot2 = d3.select("#shape");
 
 //map
 const svg= plot.append("svg")
-    .attr("width", width)
-    .attr("height", height)
+    // .attr("width", width)
+    // .attr("height", height)
     // .attr("transform", `translate(${margin.left},${margin.top})`)
+    .attr("viewBox", `0 0 ${width} ${height}`)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
 //line chart
 const svg_1 = plot_1.append("svg")
-.attr("width", width/2+200)
-.attr("height", height)
+// .attr("width", width/2+200)
+// .attr("height", height)
 .attr("preserveAspectRatio", "xMinYMin meet")
+.attr("viewBox", `0 0 ${width-500} ${height}`)
 // .attr("transform", `translate(${margin.left},${margin.top})`)
 .style("background-color", 'black');
 
@@ -73,8 +75,8 @@ const svg2_2 =  plot2.append("svg")
 //map projection type
 const projection = d3.geoMercator()
     .translate([width / 2, height / 2])
-    .scale(1000)
-    .center([-100, 35]);
+    .scale(950)
+    .center([-90, 30]);
 
 const state = d3.geoPath().projection(projection);
 
@@ -348,7 +350,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
     .min(1968)
     .max(2021)
     .step(1)
-    .width(width/2)
+    .width(2*width-600)
     .tickFormat(d3.format('d'))
     .displayValue(false)
     //update with the value of slider
@@ -368,16 +370,22 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
     svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
     });
 
+
     //append svg slider to div
     let sliderCanvas = d3.select('#dataviz_mySlider')
     .append('svg')
-    .attr('width', 1000)
-    .attr('height', 100)
+    // .attr('width', 2*width-300)
+    // .attr('height', 100)
+    .attr("viewBox", `0 0 ${2*width-300} ${100}`)
     .append('g')
     .attr('transform', 'translate(100,30)')
     .call(slider)
     .style('opacity', 1);
-    
+
+    d3.select(".track")
+    .attr("stroke-width", "1px")
+    .style("background-color", "gray");
+
 
     //event listener
 
