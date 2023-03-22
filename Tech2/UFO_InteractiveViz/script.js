@@ -8,9 +8,24 @@ const margin = {top: 20, right: 30, bottom: 40, left: 100}
 
 //parse function for filter data
 function parseCountries(d) {
+    //time format
     var dateFormat = d3.timeFormat("%Y");
 
-    if(d.state.length<3){
+    //filter none US data
+    if(d.state.length<3 && 
+        d.state !="NL"&& 
+        d.state !="PE"&& 
+        d.state !="NS"&& 
+        d.state !="NB"&& 
+        d.state !="QC"&&
+        d.state !="ON"&&
+        d.state !="MB"&&
+        d.state !="SK"&&
+        d.state !="AB"&&
+        d.state !="BC"&&
+        d.state !="YT"&&
+        d.state !="NT"&&
+        d.state !="NU"){
     return {
         summary: d.summary,
         state: d.state,
@@ -27,19 +42,15 @@ const plot = d3.select("#map");
 const plot_1 = d3.select('#linechart')
 const plot2 = d3.select("#shape");
 
-// const svg1= plot.append("svg")
-// .attr("width", width)
-// .attr("height", height)
-// .attr("preserveAspectRatio", "xMinYMin meet")
-// .style("background-color", 'black');
 
+//map
 const svg= plot.append("svg")
     .attr("width", width)
     .attr("height", height)
     // .attr("transform", `translate(${margin.left},${margin.top})`)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
-
+//line chart
 const svg_1 = plot_1.append("svg")
 .attr("width", width/2+200)
 .attr("height", height)
@@ -110,17 +121,62 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr("stroke", "black");
 
 
-        // svg.selectAll("circle")
-        // .data(obs)
-        // .enter()
-        // .append("circle")
-        // .attr('class',function(d) { return 'y'+d.date; })
-        // .attr("cx", function(d){return projection([d.lon, d.lat])[0]; })
-        // .attr("cy", function(d){return projection([d.lon, d.lat])[1]; })
-        // .attr("fill", 'rgba(165, 241, 250, 0.692)')
-        // .style("opacity", 0)
-        // .attr("r", 1.5)
+        //Viz 1 line chart
 
+        //dataset contain counts of each year
+        const yearCount = [];
+
+        for(let i=0; i<uniqueDate.length; i++){
+            if(uniqueDate[i] !="0NaN"){
+            const total = obs.filter(d=>d.date===uniqueDate[i]).length;
+            yearCount.push({year:uniqueDate[i], total:total});
+            }
+        }
+
+        console.log(yearCount);
+
+        //x scale
+        const x = d3.scaleLinear()
+        .domain(d3.extent(yearCount, function(d) { return d.year; }))
+        .range([ 0, width/2 ]);
+
+        //x axis
+        svg_1.append("g")
+        .attr("transform", `translate(100, 500)`)
+        .call(d3.axisBottom(x));
+
+        // y scale
+        const y = d3.scaleLinear()
+        .domain([0, d3.max(yearCount, function(d) { return +d.total; })])
+        .range([ 500, 0 ]);
+        
+        //y axis
+        svg_1.append("g")
+        .attr("transform", `translate(100, 0)`)
+        .call(d3.axisLeft(y));
+
+        //draw the line
+        svg_1.append("path")
+        .datum(yearCount)
+        .attr("fill", "none")
+        .attr("stroke", 'grey')
+        .attr("stroke-width", 2)
+        .attr("d", d3.line()
+          .x(function(d) { return x(d.year)+100 })
+          .y(function(d) { return y(d.total) })
+          )
+
+        //highlight circle for update, defult unseen
+        svg_1.selectAll('circle')
+        .data(yearCount)
+        .enter()
+        .append('circle')
+        .attr('class',function(d) { return 'y'+d.year; })
+        .attr('cx', function(d) { return x(d.year)+100 })
+        .attr('cy', function(d) { return y(d.total) })
+        .attr('fill', 'rgba(165, 241, 250, 0.692)')
+        .style("opacity", 0)
+        .attr('r', 7);
 
 
         // draw map for viz2
@@ -158,57 +214,6 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         }
 
 
-        //for line chart
-        const yearCount = [];
-
-        for(let i=0; i<uniqueDate.length; i++){
-            if(uniqueDate[i] !="0NaN"){
-            const total = obs.filter(d=>d.date===uniqueDate[i]).length;
-            yearCount.push({year:uniqueDate[i], total:total});
-            }
-        }
-
-        console.log(yearCount);
-
-        const x = d3.scaleLinear()
-        .domain(d3.extent(yearCount, function(d) { return d.year; }))
-        .range([ 0, width/2 ]);
-
-        svg_1.append("g")
-        .attr("transform", `translate(100, 500)`)
-        .call(d3.axisBottom(x));
-
-        // Add Y axis
-        const y = d3.scaleLinear()
-        .domain([0, d3.max(yearCount, function(d) { return +d.total; })])
-        .range([ 500, 0 ]);
-        
-        svg_1.append("g")
-        .attr("transform", `translate(100, 0)`)
-        .call(d3.axisLeft(y));
-
-        svg_1.append("path")
-        .datum(yearCount)
-        .attr("fill", "none")
-        .attr("stroke", 'grey')
-        .attr("stroke-width", 2)
-        .attr("d", d3.line()
-          .x(function(d) { return x(d.year)+100 })
-          .y(function(d) { return y(d.total) })
-          )
-
-          svg_1.selectAll('circle')
-          .data(yearCount)
-          .enter()
-          .append('circle')
-          .attr('class',function(d) { return 'y'+d.year; })
-          .attr('cx', function(d) { return x(d.year)+100 })
-          .attr('cy', function(d) { return y(d.total) })
-          .attr('fill', 'rgba(165, 241, 250, 0.692)')
-          .style("opacity", 0)
-          .attr('r', 7);
-
-
 
         //button for hover highlight
         const lightB= svg2_2.append('circle')
@@ -234,18 +239,18 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
 
              // A function that update the chart when slider is moved?
 
-        //update function for slider interaction(show each year)
+    //update function for slider interaction(show each year)
     function updateDate(year) {
-        // filter data of each year
+        // filter data of selected year
         filteredDate = obs.filter(function(d){ return d.date == year });
-        //reset checkbox to uncheck
 
         console.log('year'+ year)
+        //find count value of selected year
         var count = d3.format(',')(filteredDate.length);
         console.log(count);
 
-        // document.querySelector('.showAll').checked = false;
-       //draw circle
+
+       //draw circle on map
         svg.selectAll("circle")
         .data(filteredDate)
         .enter()
@@ -271,6 +276,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr('fill', "white")
         .text("Year: " + year);
 
+        //text show counts
         svg_1.append('text')
         .attr('class', 'discription')
         .attr("x", 110)
@@ -280,7 +286,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr('fill', "white")
         .text("Count: " +count);
 
-
+        //highlight line associate with circle on line chart
         const hightlightline = svg_1.append('line')
         .attr('x1', function(d) { return x(year)+100 })
         .attr('y1', 0)
@@ -348,18 +354,18 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
     //update with the value of slider
     .on('onchange', (val) => {
     d3.select('#value').text(val);
+    //stored value of selected year
     selectedValue = val;
     console.log(val);
     //remove everything before draw new
     svg.selectAll("circle").remove();
-    // svg_1.select(counttext).remove();
-    // svg_1.select(yeartext).remove();
     svg_1.selectAll('.discription').remove();
-    svg_1.selectAll("line").transition().duration(800).style("opacity", 0).remove();
-    svg_1.selectAll("circle").transition().duration(800).style("opacity", 0);
-    svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
+    svg_1.selectAll("line").transition().duration(200).style("opacity", 0).remove();
+    svg_1.selectAll("circle").transition().duration(200).style("opacity", 0);
     //draw new
     updateDate(selectedValue);
+    //show circle on the selected year
+    svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
     });
 
     //append svg slider to div
