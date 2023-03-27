@@ -29,22 +29,28 @@ h1{
     flex-direction: row;
   }
 
-figure#dataviz_mySlider{
+#dataviz_mySlider{
     /* height: 100vh; */
-    margin-bottom: 100px;
+    margin-bottom:100px;
     /* width: 700px; */
     order: 2;
 }
 
 figure#map{
     margin: 0px;
-    height: 100vh;
+    height: 70vh;
     width: 100%;
 }
 
 figure#linechart{
     margin: 0px;
-    height: 100vh;
+    height: 70vh;
     width: 60%;
+}
+
+.tooltip{
+    font-size: 15pt;
+    position:absolute;
+    visibility: hidden;
 }
 
