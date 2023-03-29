@@ -17,10 +17,7 @@ function canvasApp() {
      * Encapsulate within the following function anything that you want
      * to draw in your browser within the specified region allocated for canvas.
      */
-    function drawScreen () {
-        
 
-    }
 
     // Specify the dimensions of the Canvas
 
@@ -125,18 +122,18 @@ function canvasApp() {
 
     img.onload = function() {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        drawMosaic();
+        drawMj();
       };
   
-    function drawMosaic() {
+    function drawMj() {
 
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
   
         for (let gridX = 0; gridX < img.width; gridX++) {
             for (let gridY = 0; gridY < img.height; gridY++) {
-                const tileWidth = 618 / img.width;
-                const tileHeight = 442 / img.height;
+                const tileWidth = 1;
+                const tileHeight = 1;
                 const posX = tileWidth * gridX;
                 const posY = tileHeight * gridY;
 
@@ -149,7 +146,7 @@ function canvasApp() {
                 const greyscale = Math.round(c[0] * 0.222 + c[1] * 0.707 + c[2] * 0.071);
           const gradientToIndex = Math.round(map(greyscale, 0, 255, 0, shapes.length - 1));
 
-          ctx.drawImage(shapes[gradientToIndex], posX, posY, tileWidth, tileHeight);
+          ctx.drawImage(shapes[gradientToIndex], posX, posY, 1, 1);
 
         //   console.log(tileWidth);
         //   console.log(tileHeight);
@@ -162,48 +159,8 @@ function canvasApp() {
       }
     }
   
-  
-    // console.log(shapes);
-
-    // ctx.drawImage(img, 0, 0);
-    // const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    // const data = imageData.data;
-    // console.log(data);
-    // for (let i = 0; i < data.length; i += 4) {
-    //     const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
-    //     data[i] = avg; // red
-    //     data[i + 1] = avg; // green
-    //     data[i + 2] = avg; // blue
-    // }
-    // ctx.putImageData(imageData, 0, 0);
-
-    
-
-
-
-    
-    // for (var gridX = 0; gridX < img.width; gridX++) {
-    //     for (var gridY = 0; gridY < img.height; gridY++) {
-    //       // grid position + title size
-    //       var titleWidth = 603 / img.width;
-    //       var titleHeight = 873 / img.height;
-    //       var posX = titleWidth * gridX;
-    //       var posY = titleHeight * gridY;
-    
-    //       // get current color
-    //     //   img.loadPixels();
-    //     //   var c = data.get(min(gridX, img.width - 1), gridY);
-    //       // greyscale conversion
-    //     //   var greyscale = round(red(c) * 0.222 + green(c) * 0.707 + blue(c) * 0.071);
-    //       var gradientToIndex = round(map(greyscale, 0, 255, 0, shapes.length - 1));
-    //       image(shapes[gradientToIndex], posX, posY, titleWidth, titleHeight);
-    //       ctx.putImageData(imageData, 0, 0);
-    //     }
-    //   }
-
 
     // Call the drawScreen() function at the end of the main canvasApp()
-    drawScreen();
 
 }
 
