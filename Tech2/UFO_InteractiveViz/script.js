@@ -227,22 +227,22 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
               .style("text-anchor", "end");
 
 
-        svg2.selectAll("myline")
+        const shapeLine = svg2.selectAll("myline")
             .data(shapeCount)
             .enter()
             .append("line")
-            .attr("x1", function(d) { return xScale(d.total); })
+            .attr("x1", 50)
             .attr("x2", xScale(0))
             .attr("y1", function(d) { return yScale(d.shape); })
             .attr("y2", function(d) { return yScale(d.shape); })
             .attr("stroke", "grey")
 
 
-        var popCircle = svg2.selectAll("lolipopCircle")
+        const popCircle = svg2.selectAll("lolipopCircle")
             .data(shapeCount)
             .enter()
             .append("circle")
-                .attr("cx", function(d) { return xScale(d.total); })
+                .attr("cx", 50)
                 .attr("cy", function(d) { return yScale(d.shape); })
                 .attr("r", "6")
                 .style("fill", "rgba(165, 241, 250, 0.992)")
@@ -266,22 +266,44 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
                 .style("top",(e.pageY)+"px")
                 .html(`Shape: &nbsp${d.shape} <br> Count: &nbsp${d.total}`);
 
+            console.log(d3.select(this));
             d3.select(this)
+                .attr("r", "6")
+                // .interrupt()
                 .transition()
                 .duration(200)
                 .attr("r", "10");
+                // .style("fill", 'black');
 
         }).on("mouseout", function () {
 
             tooltip.style("visibility", "hidden");
 
             d3.select(this)
+            // .interrupt()
             .transition()
             .duration(200)
+            // .delay(100)
             .attr("r", "6");
 
         })
 
+
+        svg2.on('mouseover.once', function(){
+            popCircle
+            // .interrupt()
+            .transition()
+            .duration(1000)
+            .attr("cx", function(d) { return xScale(d.total); })
+            // .attr("cy", function(d) { return yScale(d.shape); })
+            // .attr("r", "1")
+            .on('end', function(){})
+            shapeLine
+            .transition()
+            .duration(1000)
+            .attr("x1", function(d) { return xScale(d.total); })
+
+        })
 
      /***************************** */
     // A FUNCTION CONTAINS DRAW CIRCLE ON MAP AND HIGHLIGHT ON LINE CHART FOR EACH SELECTED YEAR BY THE SLIDER
@@ -308,7 +330,7 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
         .attr("fill", 'rgba(165, 241, 250, 0.692)')
         .style("opacity", 0)
         //animation
-        .transition().duration(800).style("opacity", .6)
+        .transition().duration(800).delay(100).style("opacity", .6)
         .attr("r", 1.5)
         // console.log(1);
         // svg.selectAll(".y"+year).transition().duration(2000).style("opacity", .5);
@@ -357,23 +379,25 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
     .width(2*width-600)
     .tickFormat(d3.format('d'))
     .displayValue(false)
+    .value(1968)
+
     //update with the value of slider
     .on('onchange', (val) => {
-    d3.select('#value').text(val);
+    // console.log(val);
+    // d3.select('#value').text(val);
     //stored value of selected year
     selectedValue = val;
-    console.log(val);
+    // console.log(val);
     //remove everything before draw new
     svg.selectAll("circle").remove();
     svg_1.selectAll('.discription').remove();
-    svg_1.selectAll("line").transition().duration(200).style("opacity", 0).remove();
-    svg_1.selectAll("circle").transition().duration(200).style("opacity", 0);
+    svg_1.selectAll("line").transition().duration(100).style("opacity", 0).remove();
+    svg_1.selectAll("circle").transition().duration(100).style("opacity", 0);
     //draw new
     updateDate(selectedValue);
     //show circle on the selected year
     svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
-    });
-
+    })
 
     //append svg slider to div
     let sliderCanvas = d3.select('#dataviz_mySlider')
@@ -390,7 +414,21 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
     .attr("stroke-width", "1px")
     .style("background-color", "gray");
 
+    console.log(d3.select(".parameter-value"));
+    // .transform('translate(830)')
+    // Animate the slider handle from left to right automatically
+    //draw new
+//     for(i=0;i<53;i++){
+//     svg.selectAll("circle").remove();
+//     svg_1.selectAll('.discription').remove();
+//     svg_1.selectAll("line").transition().duration(200).style("opacity", 0).remove();
+//     svg_1.selectAll("circle").transition().duration(200).style("opacity", 0);
+//     updateDate(1968+i);
+//     //show circle on the selected year
+//     // svg_1.selectAll(".y"+1968).transition().duration(800)..delay(300).style("opacity", 1);
+// }
 
+    // console.log(d3.select('#value').text());
     //event listener
 
 sliderCanvas;
