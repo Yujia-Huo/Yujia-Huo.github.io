@@ -22,9 +22,9 @@ function canvasApp() {
     // Specify the dimensions of the Canvas
 
     // const width = window.innerWidth;
-    let width = 618;
+    let width = 1000;
     // const height = window.innerHeight;
-    let height = 442;
+    let height = 500;
 
     const canvas = document.getElementById("canvas");
 
@@ -53,7 +53,7 @@ function canvasApp() {
 
     const img = new Image();
     img.crossOrigin = "anonymous";
-    img.src = "./assets/Screen Shot 2023-03-25 at 7.42.48 PM.png";
+    img.src = "./assets/HD-wallpaper-michael-jackson-with-panther-in-ash-background-wearing-white-t-shirt-and-black-coat-celebrities.png";
 
     var shapes = [];
     const shape1 = new Image();
@@ -130,23 +130,24 @@ function canvasApp() {
         const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
   
-        for (let gridX = 0; gridX < img.width; gridX++) {
-            for (let gridY = 0; gridY < img.height; gridY++) {
-                const tileWidth = 1;
-                const tileHeight = 1;
+        for (let gridX = 0; gridX < canvas.width; gridX++) {
+            for (let gridY = 0; gridY < canvas.height; gridY++) {
+                const tileWidth = 3;
+                const tileHeight = 3;
                 const posX = tileWidth * gridX;
                 const posY = tileHeight * gridY;
 
-                  console.log(img.width);
-    
-                const pixelIndex = (gridY * img.width + gridX) * 4;
+                
+                const pixelIndex = (gridY * canvas.width + gridX) * 4;
+
 
                 const c = imgData.data.slice(pixelIndex, pixelIndex + 4);
+                // console.log(imgData.data);
 
                 const greyscale = Math.round(c[0] * 0.222 + c[1] * 0.707 + c[2] * 0.071);
           const gradientToIndex = Math.round(map(greyscale, 0, 255, 0, shapes.length - 1));
 
-          ctx.drawImage(shapes[gradientToIndex], posX, posY, 1, 1);
+          ctx.drawImage(shapes[gradientToIndex], posX, posY, tileWidth, tileHeight);
 
         //   console.log(tileWidth);
         //   console.log(tileHeight);

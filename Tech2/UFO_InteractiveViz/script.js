@@ -247,6 +247,31 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
                 .attr("r", "6")
                 .style("fill", "rgba(165, 241, 250, 0.992)")
                     //   .attr("stroke", "black")
+                    .on("mouseover", function (e, d) {
+                        tooltip.style("visibility", "visible")
+                            .style("left",(e.pageX+50)+"px")
+                            .style("top",(e.pageY)+"px")
+                            .html(`Shape: &nbsp${d.shape} <br> Count: &nbsp${d.total}`);
+            
+                        // console.log(d3.select(this));
+                        d3.select(this)
+                            .transition()
+                            .duration(200)
+                            .delay(1000)
+                            .attr("r", "10");
+                            // .style("fill", 'black');
+            
+                    }).on("mouseout", function () {
+            
+                        tooltip.style("visibility", "hidden");
+            
+                        d3.select(this)
+                        .transition()
+                        .duration(200)
+                        .delay(1000)
+                        .attr("r", "6");
+            
+                    });
 
 
         //find max and min of the years
@@ -260,33 +285,33 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
                 .attr("class", "tooltip");
 
 
-        popCircle.on("mouseover", function (e, d) {
-            tooltip.style("visibility", "visible")
-                .style("left",(e.pageX+50)+"px")
-                .style("top",(e.pageY)+"px")
-                .html(`Shape: &nbsp${d.shape} <br> Count: &nbsp${d.total}`);
+        // popCircle.on("mouseover", function (e, d) {
+        //     tooltip.style("visibility", "visible")
+        //         .style("left",(e.pageX+50)+"px")
+        //         .style("top",(e.pageY)+"px")
+        //         .html(`Shape: &nbsp${d.shape} <br> Count: &nbsp${d.total}`);
 
-            console.log(d3.select(this));
-            d3.select(this)
-                .attr("r", "6")
-                // .interrupt()
-                .transition()
-                .duration(200)
-                .attr("r", "10");
-                // .style("fill", 'black');
+        //     console.log(d3.select(this));
+        //     d3.select(this)
+        //         .attr("r", "6")
+        //         // .interrupt()
+        //         .transition()
+        //         .duration(200)
+        //         .attr("r", "10");
+        //         // .style("fill", 'black');
 
-        }).on("mouseout", function () {
+        // }).on("mouseout", function () {
 
-            tooltip.style("visibility", "hidden");
+        //     tooltip.style("visibility", "hidden");
 
-            d3.select(this)
-            // .interrupt()
-            .transition()
-            .duration(200)
-            // .delay(100)
-            .attr("r", "6");
+        //     d3.select(this)
+        //     // .interrupt()
+        //     .transition()
+        //     .duration(200)
+        //     // .delay(100)
+        //     .attr("r", "6");
 
-        })
+        // })
 
 
         svg2.on('mouseover.once', function(){
@@ -294,14 +319,14 @@ Promise.all([usaMapPromise, obsPromise]).then(function([usamap, obs]){
             // .interrupt()
             .transition()
             .duration(1000)
-            .attr("cx", function(d) { return xScale(d.total); })
+            .attr("cx", function(d) { return xScale(d.total); });
             // .attr("cy", function(d) { return yScale(d.shape); })
             // .attr("r", "1")
-            .on('end', function(){})
+            // .on('end', function(){})
             shapeLine
             .transition()
             .duration(1000)
-            .attr("x1", function(d) { return xScale(d.total); })
+            .attr("x1", function(d) { return xScale(d.total); });
 
         })
 
