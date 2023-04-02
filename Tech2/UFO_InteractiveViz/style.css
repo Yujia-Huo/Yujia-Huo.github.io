@@ -8,14 +8,52 @@ html, body {
 
 h1{
     font-size: 40pt;
-    font-weight: 200;
+    font-weight: 500;
 
 }
 
+h2{
+    font-size: 20pt;
+    font-weight: 500;
+}
+
+h3{
+    font-size: 15pt;
+    margin-top: 50px;
+    font-weight: 500;
+}
+
+p{
+    font-size: 15pt;
+    line-height: 2;
+    font-weight: 100;
+}
 #title{
-    margin-left: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+    border-bottom: 2pt;
+}
+
+
+#viz1-map_container{
+    margin-left: 200px;
+    margin-right: 200px;
     margin-bottom: 100px;
 }
+
+#viz2_container{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+}
+
+#viz3_container{
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 200px;
+}
+
 .axis text,
 .slider text {
     font-family: Montserrat;
@@ -38,13 +76,13 @@ h1{
 
 figure#map{
     margin: 0px;
-    height: 70vh;
+    /* height: 70vh; */
     width: 100%;
 }
 
 figure#linechart{
     margin: 0px;
-    height: 70vh;
+    /* height: 70vh; */
     width: 60%;
 }
 
@@ -54,3 +92,45 @@ figure#linechart{
     visibility: hidden;
 }
 
+@media only screen and (max-width: 1024px) {
+    h1{
+        font-size: 28pt;
+    }
+    p{
+        font-size: 12pt;
+    }
+    h2{
+        font-size: 16pt;
+    }
+    
+    h3{
+        font-size: 12pt;
+    }
+
+    #title{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-bottom: 50px;
+        border-bottom: 2pt;
+    }
+    
+    
+    #viz1-map_container{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-bottom: 50px;
+    }
+    
+    #viz2_container{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-bottom: 50px;
+    }
+    
+    #viz3_container{
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-bottom: 100px;
+    }
+
+}
