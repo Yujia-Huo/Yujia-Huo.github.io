@@ -245,7 +245,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
         //draw lolipop chart
         const xScale = d3.scaleLinear()
             .domain(d3.extent(shapeCount, function(d){return d.total }))
-            .range([50, width-300]);
+            .range([50, width-100]);
 
         var yScale = d3.scaleBand()
             .range([ 0, height*2/3 ])
@@ -387,7 +387,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
         .size([width, height/2])
         .words(top100WordCount.map(function(d) { return {text: d.word, size: d.count}; }))
         .rotate(0)
-        .padding(3)
+        .padding(5)
         .fontSize(function(d) { return sizeScale(d.size)})
         //   .fontSize(20)
 
@@ -459,7 +459,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
         .attr("fill", 'rgba(165, 241, 250, 0.692)')
         .style("opacity", 0)
         //animation
-        .transition().duration(800).delay(100).style("opacity", .6)
+        .transition().duration(300).style("opacity", .6)
         .attr("r", 1.5)
         // console.log(1);
         // svg.selectAll(".y"+year).transition().duration(2000).style("opacity", .5);
@@ -505,7 +505,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
     .min(1968)
     .max(2021)
     .step(1)
-    .width(2*width-600)
+    .width(2*width-400)
     .tickFormat(d3.format('d'))
     .displayValue(false)
     .value(1968)
@@ -525,7 +525,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
     //draw new
     updateDate(selectedValue);
     //show circle on the selected year
-    svg_1.selectAll(".y"+selectedValue).transition().duration(800).style("opacity", 1);
+    svg_1.selectAll(".y"+selectedValue).transition().duration(300).style("opacity", 1);
     })
 
     //append svg slider to div
@@ -535,7 +535,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
     // .attr('height', 100)
     .attr("viewBox", `0 0 ${2*width-300} ${100}`)
     .append('g')
-    .attr('transform', 'translate(100,30)')
+    .attr('transform', 'translate(50,30)')
     .call(slider)
     .style('opacity', 1);
 
