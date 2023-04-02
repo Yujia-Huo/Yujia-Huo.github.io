@@ -20,41 +20,68 @@
 
     <body>
         <div id="title">
-            <h1>UFO SIGHTING REPORT: 1868 - 2021</h1>
+            <h1>UFO SIGHTING REPORT: 1968 - 2021</h1>
 
-            <p>UFO, or Unidentified Flying Object, was first mentioned by Kenneth Arnold in 1947. Since then, public interet about UFO sighting has dramatical increase. Also with the development of aerospace, we start to wondering if there actually other living creature in the space.</p>
+            <p>UFO, or Unidentified Flying Object, was first mentioned by <a href = 'https://airandspace.si.edu/stories/editorial/1947-year-flying-saucer' target = '_blank'>Kenneth Arnold</a> in 1947. Since then, public interet about UFO sighting has dramatical increase. Also with the development of aerospace, we start to wondering if there actually other living creature in the space.</p>
 
             <p>
                 In the Very beginning, UFO sighting is more like a folklore and government's identify most of those sighting are just air ballon or firworks. However, the significant constant increase of sighting raise government's attention and admitted that there are certain percentage of the sighting are unidentified. 
             </p>
 
-            <p>The following visualization will be based on dataset from National UFO Reporting Center to explore the UFO sighting. </p>
+            <p>The following visualization will be based on dataset from National UFO Reporting Center to explore the UFO sighting to presenting different variables of UFO sighting. </p>
 
         </div>
         <div id="viz1-map_container">
             <h2>TRENDING AND LOCATION</h2>
             <p>At the very beginning, we might wonder, are there any patterns or trends in the location of UFO sightings over time? For example, do certain areas experience more sightings than others, or do sightings cluster around certain geographic features?</p>
-            <h3>Drag the Slider to Explore ⬇</h3>
+            <p>Drag the slider to explore ⬇</p>
             <div id="dataviz_mySlider"></div>
             <div id="chart--container">
             <figure id = "linechart"></figure>
             <figure id = "map"></figure>
-        </div>
-        <p>When look into the trending, it's a clear raise of UFO sighting in each year. But one interesting observation is that there is a big drop from 2014 to 2018, which need further study to explain this drop. And when take a look into the dsitribution of the location, it is noticable that sighting reports are more likely to cluster around major cities and has close relationship to the population devsity. The assumption can be people in the major cities has more chance to expose to various source of light, and has more access to the internet.</p>
+            </div>
+            <p>When look into the trending, it's a clear raise of UFO sighting in each year. But one interesting observation is that there is a big drop <span style = 'color:rgba(165, 241, 250, 1)'>from 2014 to 2018</span>, which need further study to explain this drop. And when take a look into the dsitribution of the location, it is noticable that sighting reports are more likely to cluster around major cities and has close relationship to the <a href="https://www.census.gov/library/visualizations/2021/geo/population-distribution-2020.html" target="_blank" >population density</a>. The assumption can be people in the major cities has more chance to expose to various source of light, and has more access to the internet.</p>
         </div>
 
-    <div id="viz2_container">
-        <h2>WHAT ARE PEOPLE SEEING </h2>
-        <p>
-            What are UFO look like? This will be the most common question that people ask about UFO. So we will look into that through the visualization. There is a significant amount of 'light' stand out. From the data analysis, the result shows that over 30% of the sightings are relate to light, fireball, and circle.
-        </p>
-        <div id="shape"></div>
-    </div>
+        <div id="viz2_container">
+            <h2>WHAT ARE PEOPLE SEEING </h2>
+            <p>
+                What are UFO look like? This will be the most common question that people ask about UFO. So we will look into that through the visualization. There is a significant amount of 'light' stand out. From the data analysis, the result shows that over 30% of the sightings are relate to  <span style = 'color:rgba(165, 241, 250, 1)'>light</span>,  <span style = 'color:rgba(165, 241, 250, 1)'>fireball</span>, and <span style = 'color:rgba(165, 241, 250, 1)'>circle</span>.
+            </p>
+            <div id="shape"></div>
+        </div>
 
     <div id="viz3_container">
         <h2>WHAT ARE PEOPLE SAYING </h2>
-        <p>It will be interesting to see how people say when they report the UFO sighting. The Word cloud below shows the top 80 common words that people use. Size represent amount, opacity for the same encoding to make hierarchy obvious. </p>
+        <p>It will be interesting to see how people say when they report the UFO sighting. The Word cloud below shows the <span style = 'color:rgba(165, 241, 250, 1)'>top 80 common words</span> that people use. Size represent amount, opacity for the same encoding to make hierarchy obvious. </p>
         <div id="word"></div>
+    </div>
+
+    <div id="gov">
+        <h2>WHAT GOVERNMENT SAYING</h2>
+        <p>government also given some explaination to identify what are those signting actually are. </p>
+    </div>
+
+    <div id="credit">
+        <h2>Credit</h2>
+
+        <div id="creditRow">
+            <div id="language">
+                <h3>Language:</h3>
+                <p>D3.js</p>
+                <p>JavaScript</p>
+                <p>Python</p>
+            </div>
+
+            <div id="plugin">
+                <h3>Plugins:</h3>
+                <p>john Walley: Simple-Slider</p>
+                <p>Jason Davies: d3-cloud plugin</p>
+                <p>TopoJSON</p>
+            </div>
+        </div>
+        
+
     </div>
         <script src="./script.js"></script>
     </body>

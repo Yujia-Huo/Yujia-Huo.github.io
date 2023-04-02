@@ -98,14 +98,14 @@ const svg_1 = plot_1.append("svg")
 const svg2= plot2.append("svg")
     // .attr("width", width)
     // .attr("height", height+50)
-    .attr("viewBox", `0 0 ${width} ${height-300}`)
+    .attr("viewBox", `0 0 ${width} ${height-200}`)
     .attr("preserveAspectRatio", "xMinYMin meet")
     .style("background-color", 'black');
 
     
 const svg3 = plot3.append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", `0 0 ${width-300} ${height-300}`)
+    .attr("viewBox", `0 0 ${width-300} ${height-500}`)
     .style("background-color", 'black')
   .append("g")
 
@@ -120,7 +120,7 @@ const svg3 = plot3.append("svg")
 const projection = d3.geoMercator()
     .translate([width / 2, height / 2])
     .scale(950)
-    .center([-90, 30]);
+    .center([-95, 30]);
 
 const state = d3.geoPath().projection(projection);
 
@@ -384,10 +384,10 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
 
         // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
         var layout = d3.layout.cloud()
-        .size([width/2, height/2])
+        .size([width, height/2])
         .words(top100WordCount.map(function(d) { return {text: d.word, size: d.count}; }))
         .rotate(0)
-        .padding(5)
+        .padding(3)
         .fontSize(function(d) { return sizeScale(d.size)})
         //   .fontSize(20)
 
@@ -403,7 +403,7 @@ Promise.all([usaMapPromise, obsPromise, wordCountPromise]).then(function([usamap
                 .range([0.2, 1]);
                 svg3
                 .append("g")
-                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+                .attr("transform", "translate(" + layout.size()[0]/3 + "," + layout.size()[1] / 2 + ")")
                 .selectAll("text")
                     .data(words)
                     .enter().append("text")
