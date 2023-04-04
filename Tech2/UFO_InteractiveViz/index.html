@@ -20,7 +20,7 @@
 
     <body>
         <div id="title">
-            <h1>UFO SIGHTING REPORT: 1968 - 2021</h1>
+            <h1>UFOs in the USA: Mapping Decades of sightings with Location, Trends, Shapes, and Witness Testimonies</h1>
 
             <p>UFO, or Unidentified Flying Object, was first mentioned by <a href = 'https://airandspace.si.edu/stories/editorial/1947-year-flying-saucer' target = '_blank'>Kenneth Arnold</a> in 1947. Since then, public interet about UFO sighting has dramatical increase. Also with the development of aerospace, we start to wondering if there actually other living creature in the space.</p>
 
@@ -28,11 +28,11 @@
                 In the Very beginning, UFO sighting is more like a folklore and government's identify most of those sighting are just air ballon or firworks. However, the significant constant increase of sighting raise government's attention and admitted that there are certain percentage of the sighting are unidentified. 
             </p>
 
-            <p>The following visualization will be based on dataset from National UFO Reporting Center to explore the UFO sighting to presenting different variables of UFO sighting. </p>
+            <p>The following visualization will be based on dataset from National UFO Reporting Center to explore the UFO sighting to presenting different perspectives. </p>
 
         </div>
         <div id="viz1-map_container">
-            <h2>TRENDING AND LOCATION</h2>
+            <h2>SIGHTINGS ARE INCREASING...IN THE MAJOR CITIES?</h2>
             <p>At the very beginning, we might wonder, are there any patterns or trends in the location of UFO sightings over time? For example, do certain areas experience more sightings than others, or do sightings cluster around certain geographic features?</p>
             <p id="sliderMention">Click or drag the slider to explore &nbsp▽</p>
             <div id="dataviz_mySlider"></div>
@@ -44,7 +44,7 @@
         </div>
 
         <div id="viz2_container">
-            <h2>WHAT ARE PEOPLE SEEING </h2>
+            <h2>PEOPLE SAW LIGHT BALLS?</h2>
             <p>
                 What are UFO look like? This will be the most common question that people ask about UFO. So we will look into that through the visualization. There is a significant amount of 'light' stand out. From the data analysis, the result shows that over 30% of the sightings are relate to  <span style = 'color:rgba(165, 241, 250, 1)'>light</span>,  <span style = 'color:rgba(165, 241, 250, 1)'>fireball</span>, and <span style = 'color:rgba(165, 241, 250, 1)'>circle</span>.
             </p>
@@ -52,29 +52,62 @@
         </div>
 
     <div id="viz3_container">
-        <h2>WHAT ARE PEOPLE SAYING </h2>
+        <h2> PEOPLE SAID: "LIGHT" "MOVING" IN THE "SKY" ? </h2>
         <p>It will be interesting to see how people say when they report the UFO sighting. The Word cloud below shows the <span style = 'color:rgba(165, 241, 250, 1)'>top 80 common words</span> that people use. Size represent amount, opacity for the same encoding to make hierarchy obvious. </p>
         <div id="word"></div>
     </div>
 
     <div id="gov">
-        <h2>WHAT GOVERNMENT SAYING</h2>
-        <p>government also given some explaination to identify what are those signting actually are. </p>
+        <h2>GOVERNMENT SAID THEY ARE JUST BALLOONS?</h2>
+        <p>government also given some explaination to identify what are those signting actually are.</p>
+        <p><em>Government officials believe that surveillance operations by foreign powers and weather balloons or other airborne clutter explain most recent incidents of unidentified aerial phenomena — government-speak for U.F.O.s — as well as many episodes in past years.</em> - <a href="https://www.nytimes.com/2022/10/28/us/politics/ufo-military-reports.html" target="_blank" >The New York Times</a></p>
+        <p>In summary, they give three possible explaination including: drone, weather ballons and secret projects. But still a portion of records still remain undefined which raise publics' attention.</p>
+
+        <div id="icons">
+            <div class="icon">
+                <img src = "./resource/UFOicon-01.png" alt = "1" width = "200" />
+                <h3>surveillance operations</br> by foreign powers</h3>
+            </div>
+    
+            <div class="icon">
+                <img src = "./resource/UFOicon-02.png" alt = "2" width = "200" />
+                <h3>weather balloons</h3>
+            </div>
+    
+            <div class="icon">
+                <img src = "./resource/UFOicon-03.png" alt = "3" width = "200" />
+                <h3>Secret military project</h3>
+            </div>
+            <div class="icon">
+                <img src = "./resource/UFOicon-04.png" alt = "4" width = "200" />
+                <h3><span style = 'color:rgba(165, 241, 250, 1)'>Undefined</span></h3>
+            </div>
+        </div>
     </div>
 
+    <div id = 'insight'>
+        <h2>WHAT'S YOUR TAKE ON THIS MATTER?</h2>
+        <P>So what's your thought from these information? Certainly there's no absolute answer to the question: Are there any aliens outside of earth? At least for now, the best way we can see the part of the sotry is through the data. The reality is complex, and data can be the scope that support us to understand it.</P>
+
+    </div>
+
+    <div id="quote">
+        <h3>“I'm sure the universe is full of intelligent life. It's just been too intelligent to come here.”</h3>
+        <h3>― Arthur C. Clarke</h3>
+    </div>
     <div id="credit">
-        <h2>Credit</h2>
+        <h2>Reference</h2>
 
         <div id="creditRow">
             <div id="language">
-                <h3>Language:</h3>
+                <h3>Language</h3>
                 <p>D3.js</p>
                 <p>JavaScript</p>
                 <p>Python</p>
             </div>
 
             <div id="plugin">
-                <h3>Plugins:</h3>
+                <h3>Plugins</h3>
                 <p>john Walley: Simple-Slider</p>
                 <p>Jason Davies: d3-cloud plugin</p>
                 <p>TopoJSON</p>
