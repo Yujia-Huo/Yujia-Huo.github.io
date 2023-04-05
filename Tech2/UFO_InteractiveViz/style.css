@@ -35,17 +35,21 @@ p{
 }
 a:link {
     color: rgb(165, 241, 250);
-  }
-  
-  /* visited link */
-  a:visited {
-    color: rgb(165, 241, 250);
-  }
-  
-  /* mouse over link */
-  a:hover {
-    color: rgba(165, 241, 250, 0.726);
-  }
+}
+
+/* visited link */
+a:visited {
+color: rgb(165, 241, 250);
+}
+
+/* mouse over link */
+a:hover {
+color: rgba(165, 241, 250, 0.726);
+}
+
+.arrow{
+    text-decoration: none;
+}
 
 #title{
     padding-top: 100px;
