@@ -69,7 +69,7 @@ senior_sum2  = d3.sum(senior_filter2, function(d) { return +d.People; })
 
 
 //setup seperate group for each circle pack
-console.log(senior_filter);
+// console.log(senior_filter);
 let group1= svg.append('g')
 let group2= svg.append('g')
 let group3= svg.append('g')
@@ -205,7 +205,7 @@ svg.append('text')
 //draw the circle pack function with for loop
 function draw(){
     for (let i = 0; i < 9; i++) {
-            console.log(i);
+            // console.log(i);
             var numNodes = [infant_sum, uadult_sum, adult_sum, senior_sum, infant_sum2, uadult_sum2, adult_sum2, senior_sum2]
             let xp= [margin.left+50, margin.left+350, margin.left+650, margin.left+950, 100, 400, 700, 1000]
             let groups = [group1, group2, group3, group4, group5, group6, group7, group8]
@@ -220,7 +220,7 @@ function draw(){
             var nodes = d3.range(numNodes[i]/300000).map(function(d) {
             return {radius: 5}
             })
-            console.log(cy);
+            console.log(nodes);
 
             let node = groups[i].selectAll('circle')
             .data(nodes)
